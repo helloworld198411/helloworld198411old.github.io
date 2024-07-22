@@ -4,7 +4,7 @@
 import cv2
 import numpy as np
 
-
+# 将若干图像stack成一个图像
 def stackImages(scale, imgArray):
     rows = len(imgArray)
     cols = len(imgArray[0])

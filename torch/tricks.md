@@ -1,4 +1,4 @@
-## utils
+## torch tricks
 
 ### set seed
 
