@@ -1,4 +1,4 @@
 # torch
 
-- [torch train template](./template.md)
+- [template](./template.md)
 - [tricks](./tricks.md)
