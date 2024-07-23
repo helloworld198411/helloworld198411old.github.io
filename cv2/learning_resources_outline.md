@@ -34,12 +34,12 @@
 
 
 ### Project 1 - Virtual painting
-- [Project1]
+- [Project1](/opencv_learning/project1.md)
 
 
 ### Project 2 - Document scanner
-- [Project2]
+- [Project2](/opencv_learning/project2.md)
 
 
-### Project 3
-- [Project3]
+### Project 3 - number plate detection
+- [Project3](/opencv_learning/project3.md)

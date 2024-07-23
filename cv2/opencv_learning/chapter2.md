@@ -9,13 +9,13 @@ img = cv2.imread('Resources/lena.png')
 
 gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # cv2.GaussianBlur 第三个参数表示高斯的标准差 为0代表根据kernel size自动计算
-blur_img = cv2.GaussianBlur(gray_img, (7,7), 0)
+blur_img = cv2.GaussianBlur(gray_img, (5,5), 0)
 
 kernel = np.ones((5,5), np.uint8)
 
 # cv2.Canny img必须gray 第二第三个参数代表threshold1和threshold2
 # 高于threshold2为强边缘 threshold2到threshold1之间, 且与强边缘相连的像素为边缘 低于threshold1的不为边缘
-canny_img = cv2.Canny(img, 150, 200)
+canny_img = cv2.Canny(blur_img, 150, 200)
 
 # cv2.dilate 图像边界扩展
 # cv2.erode 图像边界收缩
