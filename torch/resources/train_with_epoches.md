@@ -46,7 +46,7 @@ def val_epoch(model, loss_fn, dataloader, device):
     # return loss_sum / len(dataloader)
 ```
 
-### val_epoch使用forward_batch简洁代码
+### val_epoch使用forward_batch(见train with steps)简洁代码
 ```python
 def val_epoch(model, trainer, loss_fn, dataloader, device):
     model.eval()

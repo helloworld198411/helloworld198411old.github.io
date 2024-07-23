@@ -4,6 +4,7 @@
 - Warmup Phase lr从0线性增加init_lr
 - Decay Phase lr随cos逐步降低到0
   - 通过调整num_cycles决定经过cos的多少个周期
+
 ```python
 import math
 
