@@ -70,41 +70,25 @@ for param in model.parameters():
         param.grad.data.clamp_(min=-clip_value, max=clip_value)
 ```
 
-### 多GPU训练
-#### nn.DataParallel
+### Gradient Accumulation (梯度累加)
 ```python
-devices = [torch.device(f'cuda:{i}') for i in range(torch.cuda.device_count())]
-net = nn.DataParallel(net, device_ids=devices)
-for epoch in range(num_epochs):
-    for X, y in train_iter:
-        trainer.zero_grad()
-        X, y = X.to(devices[0]), y.to(devices[0])
-        l = loss(net(X), y)
-        l.backward()
-        trainer.step()
-```
-#### nn.parallel.DistributedDataParallel
-```python
-from torch.nn.parallel import DistributedDataParallel as DDP
-def init_distributed(rank, world_size):
-    torch.distributed.init_process_group(
-        backend='nccl', 
-        init_method='env://', # 适合单机多GPU
-        world_size=world_size,
-        rank=rank
-    )
-    torch.cuda.set_device(rank)
-# usually rank = 0, world_size = torch.cuda.device_count()
-init_distributed(rank, world_size)
-model = nnModel().cuda(rank)
-model = DDP(model, device_ids=[rank])
+accumulation_steps = 4  # 定义梯度累加的步数
+# 记录批次索引的变量
+step_index = 0
 for epoch in range(num_epochs):
     for data, target in dataloader:
-        data, target = data.cuda(rank), target.cuda(rank)
+        optimizer.zero_grad()
         output = model(data)
         loss = criterion(output, target)
+        # 梯度累加
+        loss /= accumulation_steps
         loss.backward()
-        optimizer.step()
+        # 更新批次索引
+        step_index += 1
+        # 累积一定次数后更新模型参数
+        if step_index % accumulation_steps == 0:
+            optimizer.step()
+            optimizer.zero_grad()
 ```
 
 
