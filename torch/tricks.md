@@ -5,7 +5,6 @@
 import numpy as np
 import torch
 import random
-
 def set_seed(seed):
     np.random.seed(seed)
     random.seed(seed)
@@ -15,7 +14,6 @@ def set_seed(seed):
         torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
-
 set_seed(seed)
 ```
 
@@ -23,9 +21,6 @@ set_seed(seed)
 #### 通常与生成对抗网络(GANs)相关联，特别是在WGAN-GP
 ```python
 def gp(model, real_data, fake_data, device, lambda_gp):
-    """
-    Implement gradient penalty function
-    """
     alpha = torch.rand(real_data.size(0), 1, 1, 1).to(device)
     interpolates = (alpha * real_data + ((1 - alpha) * fake_data)).requires_grad_(True)
 
@@ -38,7 +33,6 @@ def gp(model, real_data, fake_data, device, lambda_gp):
     gradient_penalty = lambda_gp * ((gradients.norm(2, dim=1) - 1) ** 2).mean()
 
     return gradient_penalty
-
 gp_loss = gradient_penalty(discriminator, real_data, fake_data, device, lambda_gp)
 total_loss = real_loss + fake_loss + gp_loss
 total_loss.backward()
@@ -50,12 +44,8 @@ total_loss.backward()
 with autocast():
     y_hat = model(X)
     loss = loss_fn(y_hat, y)
-
-    # back-prop
     scaler.scale(loss).backward()
-
 scaler.unscale_(optimizer)
-
 scaler.step(optimizer)
 scaler.update()
 optimizer.zero_grad()
@@ -68,16 +58,67 @@ optimizer.zero_grad()
 ```python
 torch.nn.utils.clip_grad_value_(model.parameters(), clip_value=clip_value)
 ```
-1. 梯度范数裁剪
+2. 梯度范数裁剪
 ```python
  # norm_type 决定使用L1还是L2范数
 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=max_norm, norm_type=2)
 ```
-1. 自定义梯度裁剪
+3. 自定义梯度裁剪
 ```python
 for param in model.parameters():
     if param.grad is not None:
         param.grad.data.clamp_(min=-clip_value, max=clip_value)
 ```
 
+### 多GPU训练
+#### nn.DataParallel
+```python
+devices = [torch.device(f'cuda:{i}') for i in range(torch.cuda.device_count())]
+net = nn.DataParallel(net, device_ids=devices)
+for epoch in range(num_epochs):
+    for X, y in train_iter:
+        trainer.zero_grad()
+        X, y = X.to(devices[0]), y.to(devices[0])
+        l = loss(net(X), y)
+        l.backward()
+        trainer.step()
+```
+#### nn.parallel.DistributedDataParallel
+```python
+from torch.nn.parallel import DistributedDataParallel as DDP
+def init_distributed(rank, world_size):
+    torch.distributed.init_process_group(
+        backend='nccl', 
+        init_method='env://', # 适合单机多GPU
+        world_size=world_size,
+        rank=rank
+    )
+    torch.cuda.set_device(rank)
+# usually rank = 0, world_size = torch.cuda.device_count()
+init_distributed(rank, world_size)
+model = nnModel().cuda(rank)
+model = DDP(model, device_ids=[rank])
+for epoch in range(num_epochs):
+    for data, target in dataloader:
+        data, target = data.cuda(rank), target.cuda(rank)
+        output = model(data)
+        loss = criterion(output, target)
+        loss.backward()
+        optimizer.step()
+```
 
+
+### scheduler learning rate plot
+```python
+lr_history = []
+for _ in range(steps):
+    scheduler.step()
+    current_lr = scheduler.get_last_lr()[0]
+    lr_history.append(current_lr)
+plt.plot(lr_history, label='Learning Rate', marker='o')
+plt.xlabel('Steps')
+plt.ylabel('Learning Rate')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
