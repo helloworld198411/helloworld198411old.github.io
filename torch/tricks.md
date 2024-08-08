@@ -106,3 +106,26 @@ plt.legend()
 plt.grid(True)
 plt.show()
 ```
+
+
+### save best model and early stop
+```python
+# update log
+if valid_acc > best_acc:
+    print(f"[ Valid | {epoch + 1:03d}/{n_epochs:03d} ] loss = {valid_loss:.5f}, acc = {valid_acc:.5f} -> best")
+else:
+    print(f"[ Valid | {epoch + 1:03d}/{n_epochs:03d} ] loss = {valid_loss:.5f}, acc = {valid_acc:.5f}")
+
+
+# save models
+if valid_acc > best_acc:
+    log(f"Best model found at epoch {epoch}, saving model")
+    torch.save(student_model.state_dict(), f"{save_path}/student_best.ckpt") # only save best to prevent output memory exceed error
+    best_acc = valid_acc
+    stale = 0
+else:
+    stale += 1
+    if stale > patience:
+        print(f"No improvment {patience} consecutive epochs, early stopping")
+        break
+```
