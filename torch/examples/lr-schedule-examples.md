@@ -19,12 +19,6 @@ torch.optim.lr_scheduler.OneCycleLR 第一次退火到大学习率
 torch.optim.lr_scheduler.ReduceLROnPlateau 自适应下降
 ```
 
-官网:https://pytorch.org/docs/master/search.html?q=lr_scheduler&check_keywords=yes&area=default
-
-参考1:https://blog.csdn.net/junqing_wu/article/details/93248190
-
-参考2:https://www.cnblogs.com/wanghui-garcia/p/10895397.html
-
 
 ```
 import torch
@@ -57,15 +51,6 @@ for epoch in range(100):
     y.append(scheduler.get_lr()[0])   
 plt.plot(x, y)
 ```
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7f6b26294f28>]
-
-
-
-
     
 ![png](lr-schedule-examples_files/lr-schedule-examples_2_1.png)
     
@@ -93,13 +78,6 @@ plt.plot(x, y)
 ```
 
 
-
-
-    [<matplotlib.lines.Line2D at 0x7f6b25d6c128>]
-
-
-
-
     
 ![png](lr-schedule-examples_files/lr-schedule-examples_3_1.png)
     
@@ -123,13 +101,6 @@ for epoch in range(100):
     y.append(scheduler.get_lr()[0])
 plt.plot(x, y)
 ```
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7f6b25d4c320>]
-
-
 
 
     
@@ -158,14 +129,6 @@ for epoch in range(100):
 plt.plot(x, y)
 ```
 
-
-
-
-    [<matplotlib.lines.Line2D at 0x7f6b25cad2e8>]
-
-
-
-
     
 ![png](lr-schedule-examples_files/lr-schedule-examples_5_1.png)
     
@@ -192,13 +155,6 @@ plt.plot(x, y)
 ```
 
 
-
-
-    [<matplotlib.lines.Line2D at 0x7f6b25c886a0>]
-
-
-
-
     
 ![png](lr-schedule-examples_files/lr-schedule-examples_6_1.png)
     
@@ -222,14 +178,6 @@ for epoch in range(100):
 
 plt.plot(x, y)
 ```
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7f6b25c66a58>]
-
-
-
 
     
 ![png](lr-schedule-examples_files/lr-schedule-examples_7_1.png)
@@ -256,14 +204,6 @@ for epoch in range(100):
 
 plt.plot(x, y)
 ```
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7f6b25bc2da0>]
-
-
-
 
     
 ![png](lr-schedule-examples_files/lr-schedule-examples_8_1.png)
@@ -349,14 +289,6 @@ plt.plot(x,y)
     tensor(2.9802e-06, grad_fn=<NllLossBackward>)
     epoch 19 ,lr 0.010000000000000002
     
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7f6b25b96780>]
-
-
-
 
     
 ![png](lr-schedule-examples_files/lr-schedule-examples_9_2.png)
