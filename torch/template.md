@@ -11,3 +11,4 @@
 
 ### learning rate scheduler
 - [learning rate scheduler](/resources/lr_scheduler.md)
+- [lr scheduler examples](/examples/lr-schedule-examples.md)
