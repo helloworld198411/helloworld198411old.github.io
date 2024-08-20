@@ -52,7 +52,7 @@ for epoch in range(100):
 plt.plot(x, y)
 ```
     
-![png](lr-schedule-examples_files/lr-schedule-examples_2_1.png)
+![png](./lr-schedule-examples_files/lr-schedule-examples_2_1.png)
     
 
 
@@ -79,7 +79,7 @@ plt.plot(x, y)
 
 
     
-![png](lr-schedule-examples_files/lr-schedule-examples_3_1.png)
+![png](./lr-schedule-examples_files/lr-schedule-examples_3_1.png)
     
 
 
@@ -104,7 +104,7 @@ plt.plot(x, y)
 
 
     
-![png](lr-schedule-examples_files/lr-schedule-examples_4_1.png)
+![png](./lr-schedule-examples_files/lr-schedule-examples_4_1.png)
     
 
 
@@ -130,7 +130,7 @@ plt.plot(x, y)
 ```
 
     
-![png](lr-schedule-examples_files/lr-schedule-examples_5_1.png)
+![png](./lr-schedule-examples_files/lr-schedule-examples_5_1.png)
     
 
 
@@ -156,7 +156,7 @@ plt.plot(x, y)
 
 
     
-![png](lr-schedule-examples_files/lr-schedule-examples_6_1.png)
+![png](./lr-schedule-examples_files/lr-schedule-examples_6_1.png)
     
 
 
@@ -180,7 +180,7 @@ plt.plot(x, y)
 ```
 
     
-![png](lr-schedule-examples_files/lr-schedule-examples_7_1.png)
+![png](./lr-schedule-examples_files/lr-schedule-examples_7_1.png)
     
 
 
@@ -206,7 +206,7 @@ plt.plot(x, y)
 ```
 
     
-![png](lr-schedule-examples_files/lr-schedule-examples_8_1.png)
+![png](./lr-schedule-examples_files/lr-schedule-examples_8_1.png)
     
 
 
@@ -291,6 +291,6 @@ plt.plot(x,y)
     
 
     
-![png](lr-schedule-examples_files/lr-schedule-examples_9_2.png)
+![png](./lr-schedule-examples_files/lr-schedule-examples_9_2.png)
     
 
