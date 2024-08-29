@@ -1,6 +1,20 @@
-## torch tricks
+# torch tricks
 
-### set seed
+## Catalog
+- [torch tricks](#torch-tricks)
+  - [Catalog](#catalog)
+    - [Set Seed](#set-seed)
+    - [Gradient Penalty (gp)](#gradient-penalty-gp)
+      - [通常与生成对抗网络(GANs)相关联，特别是在WGAN-GP](#通常与生成对抗网络gans相关联特别是在wgan-gp)
+    - [Automatic Mixed Precision (自动混合精度 AMP)](#automatic-mixed-precision-自动混合精度-amp)
+    - [Gradient Clip 梯度剪裁](#gradient-clip-梯度剪裁)
+      - [一般在loss.backward() 和 optimizer.step() 之间使用](#一般在lossbackward-和-optimizerstep-之间使用)
+    - [Gradient Accumulation (梯度累加)](#gradient-accumulation-梯度累加)
+    - [scheduler learning rate plot](#scheduler-learning-rate-plot)
+    - [save best model and early stop](#save-best-model-and-early-stop)
+
+
+### Set Seed
 ```python
 import numpy as np
 import torch
