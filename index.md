@@ -4,5 +4,5 @@
 - [opencv python cv2](./opencv)
 - learning notes cv
   - object detection
-    - [yolo](./learning-notes-cv/yolo/index.md)
+    - [yolo](./cv-notes/yolo/index.md)
   

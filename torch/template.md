@@ -6,9 +6,12 @@
 3. **多GPUs**
 - [train with multi-gpu](./resources/train_with_multigpus.md)
 
-### criterion
+### **criterion**
 - [criterion](./resources/criterion.md)
 
-### learning rate scheduler
+### **learning rate scheduler**
 - [learning rate scheduler](./resources/lr_scheduler.md)
 - [lr scheduler tutorial](./examples/lr-schedule/lr-schedule-examples.md)
+
+### **modify model**
+- [modify model](./resources/modify_model.md)
