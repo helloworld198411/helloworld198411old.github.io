@@ -1,7 +1,7 @@
 # SSD
 
 ### illustration
-[ssd illustration](./ssd_illustration.md)
+- [ssd illustration](./ssd_illustration.md)
 
 ### tutorial
-[cowboy torchvision ssd-lite](./cowboy_torchvision_ssd.md)
+- [cowboy torchvision ssd-lite](./cowboy_torchvision_ssd.md)
