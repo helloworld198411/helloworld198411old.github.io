@@ -10,9 +10,9 @@
 ```python
 from torchvision.models.feature_extraction import create_feature_extractor
 
-model_ex = create_feature_extractor(model, return_nodes={
+model_ex = create_feature_extractor(model, return_nodes=
     dict{"layer name": "key"}
-})
+)
 ```
 
 - hook
@@ -20,7 +20,7 @@ model_ex = create_feature_extractor(model, return_nodes={
 def forward_hook(model, X_in, X_out):
     pass
 
-handel = layer.register_forward_hook(forward_hook)
+handle = layer.register_forward_hook(forward_hook)
 # do something
 handle.remove()
 ```
