@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/faster_rcnn.iml" filepath="$PROJECT_DIR$/.idea/faster_rcnn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../../torchDraft/.idea/torchDraft.iml" filepath="$PROJECT_DIR$/../../../../../torchDraft/.idea/torchDraft.iml" />
     </modules>
   </component>
 </project>
